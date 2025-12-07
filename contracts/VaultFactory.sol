@@ -35,3 +35,21 @@ contract VaultFactory is Ownable, ReentrancyGuard {
      */
     constructor(address initialOwner) Ownable(initialOwner) {}
 
+    /**
+     * @dev Modifier to check if user is registered
+     */
+    modifier onlyRegistered() {
+        if (!registeredUsers[msg.sender]) {
+            revert UserNotRegistered(msg.sender);
+        }
+        _;
+    }
+
+    /**
+     * @dev Register a new user with username and bio
+     * @param username User's chosen username (max 20 characters)
+     * @param bio User's bio description (max 30 characters)
+     * @notice Users must register before creating vaults
+     */
+    function registerUser(string memory username, string memory bio) external nonReentrant {
+
