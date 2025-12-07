@@ -4,15 +4,9 @@ This file contains all GitHub issues for the VaultsIQ smart contracts. Each issu
 
 ## ✅ Completed Issues
 
-_(No completed issues yet - ready for contributions!)_
-
----
-
-## ❌ Pending Issues
-
 ### Issue #1: Project Setup & Hardhat Configuration
 
-**Status:** ❌ PENDING  
+**Status:** ✅ COMPLETED  
 
 **Labels:** `smart-contracts`, `infrastructure`, `setup`  
 
@@ -24,20 +18,20 @@ Set up Hardhat project with proper configuration for Base Sepolia testnet. Confi
 
 **Acceptance Criteria:**
 
-- [ ] Initialize npm project with `package.json`
-- [ ] Install Hardhat and dependencies
-- [ ] Configure `hardhat.config.js`:
-  - [ ] Solidity compiler version (^0.8.20)
-  - [ ] Base Sepolia network configuration
-  - [ ] Gas optimization settings
-  - [ ] Etherscan verification plugin
-- [ ] Create project folder structure:
-  - [ ] `contracts/` directory
-  - [ ] `scripts/` directory
-  - [ ] `test/` directory
-- [ ] Set up environment variables file (`.env.example`)
-- [ ] Add `.gitignore` for artifacts, cache, node_modules, .env
-- [ ] Create basic README.md structure
+- [x] Initialize npm project with `package.json`
+- [x] Install Hardhat and dependencies
+- [x] Configure `hardhat.config.js`:
+  - [x] Solidity compiler version (^0.8.20)
+  - [x] Base Sepolia network configuration
+  - [x] Gas optimization settings
+  - [x] Etherscan verification plugin
+- [x] Create project folder structure:
+  - [x] `contracts/` directory
+  - [x] `scripts/` directory
+  - [x] `test/` directory
+- [x] Set up environment variables file (`.env.example`)
+- [x] Add `.gitignore` for artifacts, cache, node_modules, .env
+- [x] Create basic README.md structure
 
 **Implementation Notes:**
 
@@ -47,7 +41,11 @@ Set up Hardhat project with proper configuration for Base Sepolia testnet. Confi
 - Chain ID: 84532
 - Solidity optimizer enabled with 200 runs
 
+**Completed:** All acceptance criteria met. Project structure created, dependencies installed, and Hardhat configured for Base Sepolia testnet.
+
 ---
+
+## ❌ Pending Issues
 
 ### Issue #2: ERC-4626 Interface Implementation
 
