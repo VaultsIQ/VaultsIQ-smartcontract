@@ -50,8 +50,11 @@ contract VaultFactory is Ownable, ReentrancyGuard {
     /**
      * @dev Constructor sets the contract owner
      * @param initialOwner Address of the contract owner
+     * @notice Initializes the contract with the owner address
      */
-    constructor(address initialOwner) Ownable(initialOwner) {}
+    constructor(address initialOwner) Ownable(initialOwner) {
+        require(initialOwner != address(0), "Owner cannot be zero address");
+    }
 
     /**
      * @dev Modifier to check if user is registered
