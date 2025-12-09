@@ -214,5 +214,40 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
 
         emit Deposit(msg.sender, receiver, assets, shares);
     }
+
+    /**
+     * @dev Redeems shares for assets
+     * @param shares The amount of shares to redeem
+     * @param receiver The address that will receive the assets
+     * @param owner The address that owns the shares
+     * @return assets The amount of assets withdrawn
+     * @notice Requires allowance if caller is not the owner
+     */
+    function redeem(
+        uint256 shares,
+        address receiver,
+        address owner
+    ) 
+        public 
+        virtual 
+        override 
+        nonReentrant 
+        whenNotPaused 
+        returns (uint256 assets) 
+    {
+        if (shares == 0) revert InvalidAmount();
+
+        if (msg.sender != owner) {
+            _spendAllowance(owner, msg.sender, shares);
+        }
+
+        assets = previewRedeem(shares);
+        if (assets == 0) revert InvalidAmount();
+
+        _burn(owner, shares);
+        _asset.safeTransfer(receiver, assets);
+
+        emit Withdraw(msg.sender, receiver, owner, assets, shares);
+    }
 }
 
