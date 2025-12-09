@@ -329,5 +329,68 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
     function maxRedeem(address owner) public view virtual override returns (uint256) {
         return balanceOf(owner);
     }
+
+    /*//////////////////////////////////////////////////////////////
+                    PROTOCOL ALLOCATION MANAGEMENT
+    //////////////////////////////////////////////////////////////*/
+
+    /**
+     * @dev Set allocation for a specific protocol
+     * @param protocol Name of the protocol (e.g., "Aave", "Compound")
+     * @param amount Amount of assets to allocate to the protocol
+     * @notice Only owner can set allocations
+     */
+    function setProtocolAllocation(string memory protocol, uint256 amount) external onlyOwner {
+        if (amount > totalAssets()) revert AllocationExceedsAssets();
+
+        uint256 oldAmount = protocolAllocations[protocol];
+        protocolAllocations[protocol] = amount;
+
+        // Track protocol in supported list if not already present
+        bool exists = false;
+        for (uint256 i = 0; i < _supportedProtocols.length; i++) {
+            if (keccak256(bytes(_supportedProtocols[i])) == keccak256(bytes(protocol))) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists && amount > 0) {
+            _supportedProtocols.push(protocol);
+        }
+
+        emit ProtocolAllocationChanged(protocol, oldAmount, amount);
+    }
+
+    /**
+     * @dev Get allocation for a specific protocol
+     * @param protocol Name of the protocol
+     * @return The allocated amount for the protocol
+     */
+    function getProtocolAllocation(string memory protocol) external view returns (uint256) {
+        return protocolAllocations[protocol];
+    }
+
+    /**
+     * @dev Get total allocated amount across all protocols
+     * @return Total allocated amount
+     */
+    function getTotalAllocated() external view returns (uint256) {
+        uint256 total = 0;
+        for (uint256 i = 0; i < _supportedProtocols.length; i++) {
+            total += protocolAllocations[_supportedProtocols[i]];
+        }
+        return total;
+    }
+
+    /**
+     * @dev Get list of supported protocols
+     * @return Array of protocol names
+     */
+    function getSupportedProtocols() external view returns (string[] memory) {
+        return _supportedProtocols;
+    }
+
+    // Events
+    event ProtocolAllocationChanged(string indexed protocol, uint256 oldAmount, uint256 newAmount);
 }
 
