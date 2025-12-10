@@ -57,3 +57,12 @@ contract VaultFactory is Ownable, ReentrancyGuard {
             revert AlreadyRegistered(msg.sender);
         }
 
+        // Validate username
+        bytes memory usernameBytes = bytes(username);
+        if (usernameBytes.length == 0) {
+            revert InvalidUsername("Username cannot be empty");
+        }
+        if (usernameBytes.length > MAX_USERNAME_LENGTH) {
+            revert InvalidUsername("Username exceeds maximum length");
+        }
+
