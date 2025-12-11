@@ -66,3 +66,12 @@ contract VaultFactory is Ownable, ReentrancyGuard {
             revert InvalidUsername("Username exceeds maximum length");
         }
 
+        // Validate bio
+        bytes memory bioBytes = bytes(bio);
+        if (bioBytes.length == 0) {
+            revert InvalidBio("Bio cannot be empty");
+        }
+        if (bioBytes.length > MAX_BIO_LENGTH) {
+            revert InvalidBio("Bio exceeds maximum length");
+        }
+
