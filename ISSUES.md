@@ -94,7 +94,7 @@ Implement the ERC-4626 interface (`IERC4626.sol`) in the contracts directory. Th
 
 ### Issue #3: UserVault Contract — Core ERC-4626 Implementation
 
-**Status:** ❌ PENDING  
+**Status:** ✅ COMPLETED  
 
 **Labels:** `smart-contracts`, `feature`, `erc4626`, `vault`  
 
@@ -106,27 +106,27 @@ Implement the core UserVault contract that extends ERC-4626 standard. This contr
 
 **Acceptance Criteria:**
 
-- [ ] Create `contracts/UserVault.sol`
-- [ ] Implement ERC-4626 interface
-- [ ] Extend ERC20 for vault shares
-- [ ] Core functionality:
-  - [ ] `deposit(uint256 assets, address receiver)` - Deposit assets, mint shares
-  - [ ] `withdraw(uint256 assets, address receiver, address owner)` - Withdraw assets, burn shares
-  - [ ] `mint(uint256 shares, address receiver)` - Mint shares for assets
-  - [ ] `redeem(uint256 shares, address receiver, address owner)` - Redeem shares for assets
-- [ ] Share calculation logic:
-  - [ ] First deposit: 1:1 ratio (assets = shares)
-  - [ ] Subsequent deposits: proportional based on total assets/shares
-  - [ ] Handle edge cases (zero assets, zero shares)
-- [ ] Asset management:
-  - [ ] Store underlying asset address
-  - [ ] Track total assets and total shares
-  - [ ] Transfer assets from/to users
-- [ ] Access control:
-  - [ ] Owner-only functions
-  - [ ] Proper ownership checks
-- [ ] Events emitted for all operations
-- [ ] NatSpec documentation
+- [x] Create `contracts/UserVault.sol`
+- [x] Implement ERC-4626 interface
+- [x] Extend ERC20 for vault shares
+- [x] Core functionality:
+  - [x] `deposit(uint256 assets, address receiver)` - Deposit assets, mint shares
+  - [x] `withdraw(uint256 assets, address receiver, address owner)` - Withdraw assets, burn shares
+  - [x] `mint(uint256 shares, address receiver)` - Mint shares for assets
+  - [x] `redeem(uint256 shares, address receiver, address owner)` - Redeem shares for assets
+- [x] Share calculation logic:
+  - [x] First deposit: 1:1 ratio (assets = shares)
+  - [x] Subsequent deposits: proportional based on total assets/shares
+  - [x] Handle edge cases (zero assets, zero shares)
+- [x] Asset management:
+  - [x] Store underlying asset address
+  - [x] Track total assets and total shares
+  - [x] Transfer assets from/to users
+- [x] Access control:
+  - [x] Owner-only functions
+  - [x] Proper ownership checks
+- [x] Events emitted for all operations
+- [x] NatSpec documentation
 
 **Implementation Notes:**
 
