@@ -1,4 +1,3 @@
-
 import * as dotenv from "dotenv";
 dotenv.config();
 import { HardhatUserConfig } from "hardhat/config";
@@ -11,13 +10,16 @@ import "@nomicfoundation/hardhat-verify";
 
 // If not set, it uses ours Alchemy's default API key.
 // You can get your own at https://dashboard.alchemyapi.io
-const providerApiKey = process.env.ALCHEMY_API_KEY || "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF";
+const providerApiKey =
+  process.env.ALCHEMY_API_KEY || "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF";
 // If not set, it uses the hardhat account 0 private key.
 // You can generate a random account with `yarn generate` or `yarn account:import` to import your existing PK
 const deployerPrivateKey =
-  process.env.ACCOUNT_PRIVATE_KEY ?? "0x0000000000000000000000000000000000000000000000000000000000000000";
+  process.env.ACCOUNT_PRIVATE_KEY ??
+  "0x0000000000000000000000000000000000000000000000000000000000000000";
 // If not set, it uses our block explorers default API keys.
-const etherscanApiKey = process.env.ETHERSCAN_V2_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
+const etherscanApiKey =
+  process.env.ETHERSCAN_V2_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -35,7 +37,7 @@ const config: HardhatUserConfig = {
     ],
   },
   // Primary deployment target: Base Sepolia (testnet) and Base (mainnet)
-  defaultNetwork: "baseSepolia", // Use "base" for mainnet deployment
+  defaultNetwork: "hardhat", // Use "base" for mainnet deployment
   networks: {
     // View the networks that are pre-configured.
     // If the network you are looking for is not here you can add new network settings
