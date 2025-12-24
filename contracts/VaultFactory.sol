@@ -144,3 +144,30 @@ contract VaultFactory is Ownable, ReentrancyGuard {
         return userRegistrationTimestamps[user];
     }
 
+    /**
+     * @dev Get all user information in one call (optimized for frontend)
+     * @param user Address of the user
+     * @return isRegistered Whether user is registered
+     * @return username User's username
+     * @return bio User's bio
+     * @return timestamp Registration timestamp
+     */
+    function getAllUserInfo(address user) external view returns (bool isRegistered, string memory username, string memory bio, uint256 timestamp) {
+        isRegistered = registeredUsers[user];
+        if (isRegistered) {
+            username = userUsernames[user];
+            bio = userBios[user];
+            timestamp = userRegistrationTimestamps[user];
+        }
+    }
+
+    uint256 private _registeredUsersCount;
+
+    /**
+     * @dev Get total number of registered users
+     * @return count Total registered users
+     */
+    function getRegisteredUsersCount() external view returns (uint256) {
+        return _registeredUsersCount;
+    }
+
