@@ -15,6 +15,7 @@ contract VaultFactory is Ownable, ReentrancyGuard {
     mapping(address => string) public userUsernames;
     mapping(address => string) public userBios;
     mapping(address => uint256) public userRegistrationTimestamps;
+    mapping(string => address) private usernameToAddress;
 
     // Validation constants
     uint256 public constant MAX_USERNAME_LENGTH = 20;
@@ -71,6 +72,22 @@ contract VaultFactory is Ownable, ReentrancyGuard {
             revert InvalidUsername("Username exceeds maximum length");
         }
 
+        // Check username uniqueness
+        if (usernameToAddress[username] != address(0)) {
+            revert InvalidUsername("Username already taken");
+        }
+
+        // Validate username format (alphanumeric and underscores only)
+        for (uint256 i = 0; i < usernameBytes.length; i++) {
+            bytes1 char = usernameBytes[i];
+            if (!((char >= 0x30 && char <= 0x39) || // 0-9
+                  (char >= 0x41 && char <= 0x5A) || // A-Z
+                  (char >= 0x61 && char <= 0x7A) || // a-z
+                  (char == 0x5F))) {                // _
+                revert InvalidUsername("Username contains invalid characters");
+            }
+        }
+
         // Validate bio
         bytes memory bioBytes = bytes(bio);
         if (bioBytes.length == 0) {
@@ -85,6 +102,7 @@ contract VaultFactory is Ownable, ReentrancyGuard {
         userUsernames[msg.sender] = username;
         userBios[msg.sender] = bio;
         userRegistrationTimestamps[msg.sender] = block.timestamp;
+        usernameToAddress[username] = msg.sender;
         _registeredUsersCount++;
 
         // Emit event
