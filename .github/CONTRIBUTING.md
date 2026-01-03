@@ -22,8 +22,8 @@ We love your input! We want to make contributing to Onchain-Proc as easy and tra
    git checkout -b new-project/your-project-name
    ```
 4. **Add your project files**:
-   - For **Smart Contracts**, create a folder in `cohort-xii/submissions/<your-project-name>`.
-   - For **Frontends**, create a folder in `cohort-xiii/Web3bridge-Web3-Cohort-XIII/<your-project-name>`.
+   - For **Smart Contracts**, create a folder in `contracts/smartcontracts/<your-project-name>`.
+   - For **Frontends**, create a folder in `frontends/<your-project-name>`.
    
    *Tip: Ensure your project has a README.md explaining what it does.*
 

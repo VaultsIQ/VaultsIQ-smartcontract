@@ -10,8 +10,8 @@
   Briefly describe what your project does.
 
 ### Location
-- [ ] Smart Contract (added to `cohort-xii/submissions/`)
-- [ ] Frontend (added to `cohort-xiii/Web3bridge-Web3-Cohort-XIII/`)
+- [ ] Smart Contract (added to `contracts/smartcontracts/`)
+- [ ] Frontend (added to `frontends/`)
 
 ### Checklist
 - [ ] My code follows the repository folder structure.
